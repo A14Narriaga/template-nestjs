@@ -1,0 +1,10 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  """
+  Retorna 'fizz' si es multiplo de 3, 'buzz' si es multiplo de 5, 'fizzbuzz' si es multiplo de 3 y 5, si no es nungun caso de los anteriores retorna el numero.
+  """
+  fizzbuzz: String!
+}
