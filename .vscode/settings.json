@@ -1,0 +1,31 @@
+{
+	"material-icon-theme.activeIconPack": "nest",
+	"eslint.enable": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "always",
+		"source.fixAll.format": "always"
+	},
+	"[dockerfile]": {
+		"editor.defaultFormatter": "ms-azuretools.vscode-docker"
+	},
+	"[dockercompose]": {
+		"editor.defaultFormatter": "ms-azuretools.vscode-docker"
+	},
+	"search.exclude": {
+		"**/.husky/_": true,
+		"**/.vscode": true,
+		"**/dist": true,
+		"**/public": true,
+		"**/node_modules": true,
+		"**/yarn.lock": true
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+	// "files.exclude": {
+	//   "**/node_modules": true
+	// }
+}
