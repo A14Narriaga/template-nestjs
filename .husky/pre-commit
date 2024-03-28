@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+
+PRIMARY="95"
+SECONDARY="93"
+ERROR="91"
+SUCCESS="92"
+
+echoColorMsg() {
+  local colorID=$1
+  local msg=$2
+  local color="\e[${colorID}m"
+  local noColor="\e[0m"
+  # local colorBold="\e[1;${colorID}m"
+  echo "${color}${msg}${noColor}"
+}
+
+echoColorMsg $PRIMARY "Please wait, I need to review the project before sending these changes."
+echoColorMsg $SECONDARY "1/5 🔎 Checking format..."
+yarn format || (
+  echoColorMsg $ERROR "❌ Invalid format, please run 'yarn format:fix' or fix it manually."
+  false;
+)
+echoColorMsg $SECONDARY "2/5 🔎 Checking lint..."
+yarn lint || (
+   echoColorMsg $ERROR "❌ Invalid lint, please run 'yarn lint:fix' or fix it manually."
+   false;
+)
+echoColorMsg $SECONDARY "3/5 🔎 Type checking..."
+yarn type-check || (
+   echoColorMsg $ERROR "❌ Invalid types, please fix it."
+   false;
+)
+echoColorMsg $SECONDARY "4/5 🔎 Testing..."
+yarn test || (
+   echoColorMsg $ERROR "❌ Test failed, please fix it."
+   false;
+)
+echoColorMsg $SECONDARY "5/5 🔎 Generating build..."
+yarn build || (
+echoColorMsg $ERROR "❌ Build failed, please fix it."
+  false;
+) 
+echoColorMsg $SUCCESS "✅ Everything seems to be in order, let's send these changes."
