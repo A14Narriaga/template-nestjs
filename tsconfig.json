@@ -13,6 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "noImplicitReturns": true,
     "paths": {
       "@src/*": ["src/*"],
       "@shared/*": ["src/shared/*"],

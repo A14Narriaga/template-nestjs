@@ -31,25 +31,7 @@
 Clone the repository or use the template directly:
 
 ```bash
-git clone https://github.com/A14Narriaga/nest-template.git
-```
-
-Install yarn:
-
-```bash
-npm install --global yarn
-```
-
-Install Nest CLI:
-
-```bash
-npm i -g @nestjs/cli
-```
-
-Install all dependencies:
-
-```bash
-yarn install
+git clone https://github.com/A14Narriaga/nestjs-template.git
 ```
 
 Copy the environment variables from the example file:
@@ -58,10 +40,23 @@ Copy the environment variables from the example file:
 cp .env.example .env
 ```
 
-If you want to run the application in development mode, execute:
+If the node_modules directory not already exist, create it
 
 ```bash
-docker compose up app-dev
+mkdir node_modules
+```
+
+If you want to run the application in development mode:
+Note: Remeber execute all the commands for the repo directly form docker terminal.
+
+```bash
+docker compose up dev -d
+```
+
+If you want to enter to the integrated terminal
+
+```bash
+docker exec -it dev sh
 ```
 
 If you need to stop the development service, execute:
@@ -72,13 +67,7 @@ docker compose down
 
 ## 🧪 Testing
 
-To run all tests in watch mode you can run using Docker:
-
-```bash
-docker compose up app-test
-```
-
-Or locally run:
+To run the all the test with coverage run:
 
 ```bash
 yarn:test
@@ -87,7 +76,7 @@ yarn:test
 Or with watch mode enabled:
 
 ```bash
-yarn:test:dev
+yarn test:dev
 ```
 
 If you are interested only in the unit tests, you can run:
@@ -117,7 +106,7 @@ yarn test:dev:e2e
 ## 🚀 Production
 
 ```bash
-docker compose up app-prod
+docker compose up prod -d
 ```
 
 ## ⚙️ Building

@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  app-dev:
-    container_name: app-dev
+  dev:
+    container_name: dev
     build:
       context: .
       target: development
@@ -12,27 +12,12 @@ services:
       - "9229:9229"
     volumes:
       - .:/app
-      - node_modules:/app/node_modules/
+      - node_modules:/app/node_modules
     env_file: .env
     restart: unless-stopped
 
-  app-test:
-    container_name: app-test
-    build:
-      context: .
-      target: testing
-      dockerfile: Dockerfile
-    ports:
-      - "${PORT}:${PORT}"
-      - "9229:9229"
-    volumes:
-      - .:/app
-      - node_modules:/app/node_modules/
-    env_file: .env
-    restart: unless-stopped
-
-  app-prod:
-    container_name: app-prod
+  prod:
+    container_name: prod
     build:
       context: .
       target: production
@@ -44,3 +29,8 @@ services:
 
 volumes:
   node_modules:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./node_modules

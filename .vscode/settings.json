@@ -1,5 +1,6 @@
 {
 	"material-icon-theme.activeIconPack": "nest",
+	"eslint.enable": true,
 	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -20,6 +21,9 @@
 		"**/public": true,
 		"**/node_modules": true,
 		"**/yarn.lock": true
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	}
 	// "files.exclude": {
 	//   "**/node_modules": true
