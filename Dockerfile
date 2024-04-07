@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:20.12.0-alpine3.19 as base
+FROM --platform=$BUILDPLATFORM node:20.12.0-alpine3.19 AS base
 ENV DIR /app
 WORKDIR $DIR
 
@@ -7,14 +7,7 @@ FROM base AS development
 EXPOSE ${PORT}
 COPY package.json package.json
 RUN yarn install
-CMD [ "yarn", "start:dev" ]
-
-# Testing Mode
-FROM base AS testing
-EXPOSE ${PORT}
-COPY package.json package.json
-RUN yarn install
-CMD [ "yarn", "test:dev" ]
+CMD [ "yarn", "dev" ]
 
 # Install development dependencies
 FROM base AS dev-deps
