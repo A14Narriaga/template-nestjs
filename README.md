@@ -31,7 +31,7 @@
 Clone the repository or use the template directly:
 
 ```bash
-git clone https://github.com/A14Narriaga/nest-template.git
+git clone https://github.com/A14Narriaga/nestjs-template.git
 ```
 
 Install yarn:
@@ -72,13 +72,7 @@ docker compose down
 
 ## 🧪 Testing
 
-To run all tests in watch mode you can run using Docker:
-
-```bash
-docker compose up app-test
-```
-
-Or locally run:
+To run the all the test with coverage run:
 
 ```bash
 yarn:test
@@ -87,7 +81,7 @@ yarn:test
 Or with watch mode enabled:
 
 ```bash
-yarn:test:dev
+yarn test:dev
 ```
 
 If you are interested only in the unit tests, you can run:

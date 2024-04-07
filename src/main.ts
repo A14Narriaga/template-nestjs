@@ -30,5 +30,14 @@ async function bootstrap() {
 	await app.listen(port, "0.0.0.0")
 	logger.log(`App is ready and listening on port ${port}`)
 }
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-bootstrap()
+
+bootstrap().catch(handleError)
+
+function handleError(error: unknown) {
+	// eslint-disable-next-line no-console
+	console.error(error)
+	// eslint-disable-next-line unicorn/no-process-exit
+	process.exit(1)
+}
+
+process.on("uncaughtException", handleError)

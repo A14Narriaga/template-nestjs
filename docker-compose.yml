@@ -16,21 +16,6 @@ services:
     env_file: .env
     restart: unless-stopped
 
-  app-test:
-    container_name: app-test
-    build:
-      context: .
-      target: testing
-      dockerfile: Dockerfile
-    ports:
-      - "${PORT}:${PORT}"
-      - "9229:9229"
-    volumes:
-      - .:/app
-      - node_modules:/app/node_modules/
-    env_file: .env
-    restart: unless-stopped
-
   app-prod:
     container_name: app-prod
     build:
