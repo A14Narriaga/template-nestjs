@@ -7,6 +7,7 @@ import {
 } from "@nestjs/platform-fastify"
 
 import { AppModule } from "./app.module"
+import { corsConfig } from "./config"
 
 async function bootstrap() {
 	const logger = new Logger("Bootstrap")
@@ -16,13 +17,14 @@ async function bootstrap() {
 	)
 	const configService = app.get(ConfigService)
 	const port = Number(configService.get<string>("PORT"))
+	app.setGlobalPrefix("api")
+	app.enableCors(corsConfig)
 	app.useGlobalPipes(
 		new ValidationPipe({
 			whitelist: true,
 			forbidNonWhitelisted: true
 		})
 	)
-	app.setGlobalPrefix("api")
 	// app.useStaticAssets({
 	// 	root: join(__dirname, "..", "public"),
 	// 	prefix: "/public/",

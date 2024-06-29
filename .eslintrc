@@ -16,7 +16,7 @@
 		"plugin:node/recommended"
 	],
 	"rules": {
-		"id-length": ["error", { "min": 2 }],
+		"id-length": ["error", { "min": 2, "exceptions": ["_"] }],
 		"comma-dangle": ["error", "never"],
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error",
@@ -27,7 +27,14 @@
 		"node/no-missing-import": "off",
 		"node/no-unsupported-features/es-syntax": [
 			"error",
-			{ "ignores": ["modules"] }
+			{ "version": ">=20.0.0", "ignores": ["modules"] }
+		],
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				"varsIgnorePattern": "^_",
+				"argsIgnorePattern": "^_"
+			}
 		],
 		"node/no-unpublished-import": "off",
 		"no-process-exit": "off"

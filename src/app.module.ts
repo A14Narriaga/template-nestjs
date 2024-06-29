@@ -1,12 +1,12 @@
 import { Module } from "@nestjs/common"
 
 import { ConfigModule } from "./config"
-import { HelloWorldResolver } from "./hello-world"
+import { AuthModule } from "./modules"
 import { SharedModule } from "./shared"
 
 @Module({
-	imports: [ConfigModule, SharedModule],
+	imports: [ConfigModule, SharedModule, AuthModule],
 	controllers: [],
-	providers: [HelloWorldResolver]
+	providers: []
 })
 export class AppModule {}

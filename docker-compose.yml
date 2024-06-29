@@ -1,8 +1,38 @@
-version: '3'
-
 services:
+  db:
+    container_name: ${DB_NAME}
+    image: mongo:7.0.11
+    ports:
+      - "${DB_PORT}:27017"
+    volumes:
+      - db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    restart: always
+    command: [ "--auth" ]
+
+  dbAdmin:
+    container_name: "${DB_NAME}-admin"
+    depends_on:
+      - db
+    image: mongo-express:1.0.0-alpha.4
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+      ME_CONFIG_BASICAUTH_USERNAME: ${DB_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${DB_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: ${DB_NAME}
+      ME_CONFIG_MONGODB_URL: mongodb://${DB_USERNAME}:${DB_PASSWORD}@mongo:${DB_PORT}
+    ports:
+      - ${DB_ADMIN_PORT}:8081
+    restart: always
+
   dev:
-    container_name: dev
+    depends_on:
+      - db
+      - dbAdmin
+    container_name: dev-nest
     build:
       context: .
       target: development
@@ -34,3 +64,5 @@ volumes:
       type: none
       o: bind
       device: ./node_modules
+  db:
+    external: false
